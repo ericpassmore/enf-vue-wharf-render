@@ -1,17 +1,44 @@
 <template>
     <img alt="Vue logo" src="./assets/logo.png" />
-    <Wallet header_title="Welcome To Your Wallet" wallet_message="Default!" />
+    <Wallet
+        header-title="Welcome To Your Wallet"
+        :wallet-message="wallet.metadata.description"
+        :wallet-name="wallet.metadata.name"
+    />
+    <SessionError :error-title="errorTitle" :error-details="errorDetails" />
 </template>
 
 <script>
-import {testAccountName} from "./config.ts";
-import Wallet from './components/Wallet.vue';
-Wallet.props.wallet_message="NOT ****** NOT";
-
+import {makeWallet, EnfWalletPlugin} from '@/wallet.ts'
+import {testChainDefinition, testPermissionLevel} from '@/config'
+import Wallet from '@/components/Wallet.vue'
+import SessionError from '@/components/Error.vue'
 export default {
-    name: 'App',
-    components: {
-        Wallet,
+    components: {SessionError, Wallet},
+    data() {
+        return {
+            errorDetails: undefined,
+            errorTitle: undefined,
+            wallet: makeWallet()
+        }
+    },
+    methods: {
+        didLogin() {
+            console.info('running did login')
+        },
+
+        async refreshAccount() {
+            this.session.client.v1.chain.get_account(this.session.actor).then((result) => {
+                this.account = result
+            })
+        },
+    },
+    mounted() {
+        this.wallet.login({
+            chain: testChainDefinition,
+            permissionLevel: testPermissionLevel,
+        })
+        this.didLogin()
     },
 }
 </script>

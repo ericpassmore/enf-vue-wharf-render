@@ -1,14 +1,17 @@
 <template>
     <div class="error">
-        <h2>{$t('error.title', {default: 'Error'})}</h2>
-        <p>{$errorDetails}</p>
+        <h2>{{ errorTitle }}</h2>
+        <p>{{ errorDetails }}</p>
     </div>
-    div>
 </template>
 
 <script>
 export default {
-    name: ['Session Error'],
+    name: `SessionError`,
+    props: {
+        errorTitle: String,
+        errorDetails: String,
+    },
 }
 </script>
 

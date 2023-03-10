@@ -1,134 +1,135 @@
-import {PermissionLevel} from '@greymass/eosio';
+import {PermissionLevel} from '@greymass/eosio'
 
 import {
-  Checksum256,
-  cancelable,
-  Cancelable,
-  Session,
-  SessionArgs,
-  SessionKit,
-  SessionKitOptions,
-  SessionOptions,
-  AbstractUserInterface,
-  UserInterface,
-  UserInterfaceLoginResponse,
-  LoginOptions,
-  LoginContext,
-  PromptArgs,
-  PromptResponse
-} from "@wharfkit/session";
+    AbstractUserInterface,
+    Cancelable,
+    cancelable,
+    Checksum256,
+    LoginContext,
+    LoginOptions,
+    PromptArgs,
+    PromptResponse,
+    Session,
+    SessionArgs,
+    SessionKit,
+    SessionKitOptions,
+    SessionOptions,
+    UserInterface,
+    UserInterfaceLoginResponse,
+} from '@wharfkit/session'
 
-import {
-  testChainDefinition,
-  testPermissionLevel,
-} from "@/config";
-import { makeWallet } from "@/wallet";
-import { EnfStorage} from "@/storage";
-import {browserFetch} from "@/browser-fetch";
+import {testChainDefinition, testPermissionLevel} from '@/config'
+import {makeWallet} from '@/wallet'
+import {EnfStorage} from '@/storage'
 
-const wallet = makeWallet();
+const wallet = makeWallet()
 
 export class EnfUserInterface extends AbstractUserInterface implements UserInterface {
-  readonly logging = false
-  public messages: string[] = []
+    readonly logging = false
+    public messages: string[] = []
 
-  log(message: string) {
-    this.messages.push(message)
-    if (this.logging) {
-      // eslint-disable-next-line no-console
-      console.info('MockUserInterface', message)
+    log(message: string) {
+        this.messages.push(message)
+        if (this.logging) {
+            // eslint-disable-next-line no-console
+            console.info('MockUserInterface', message)
+        }
     }
-  }
 
-  async login(context: LoginContext): Promise<UserInterfaceLoginResponse> {
-    let chainId = context.chain?.id
-    if (!chainId) {
-      chainId = Checksum256.from(context.chains[0].id)
+    async login(context: LoginContext): Promise<UserInterfaceLoginResponse> {
+        let chainId: Checksum256
+        if (context.chain) {
+            chainId = context.chain.id
+        } else {
+            chainId = new Checksum256(new Uint8Array())
+        }
+        if (!chainId) {
+            this.log('no chain id')
+        } else {
+            this.log('chain id is ${chainId}')
+        }
+        const permissionLevel = context.permissionLevel
+        if (!permissionLevel) {
+            this.log('no permission')
+        }
+        return {
+            chainId,
+            permissionLevel,
+            walletPluginIndex: 0,
+        }
     }
-    let permissionLevel = context.permissionLevel
-    if (!permissionLevel) {
-      permissionLevel = PermissionLevel.from('mock@interface')
+
+    async onError(error: Error) {
+        this.log('onError: ' + JSON.stringify(error))
     }
-    return {
-      chainId,
-      permissionLevel,
-      walletPluginIndex: 0,
+
+    async onLogin(options?: LoginOptions) {
+        this.log('onLogin: ' + JSON.stringify(options))
     }
-  }
 
-  async onError(error: Error) {
-    this.log('onError: ' + JSON.stringify(error))
-  }
+    async onLoginComplete() {
+        this.log('onLoginComplete')
+    }
 
-  async onLogin(options?: LoginOptions) {
-    this.log('onLogin: ' + JSON.stringify(options))
-  }
+    async onTransact() {
+        this.log('onTransact')
+    }
 
-  async onLoginComplete() {
-    this.log('onLoginComplete')
-  }
+    async onTransactComplete() {
+        this.log('onTransactComplete')
+    }
 
-  async onTransact() {
-    this.log('onTransact')
-  }
+    async onSign() {
+        this.log('onSign')
+    }
 
-  async onTransactComplete() {
-    this.log('onTransactComplete')
-  }
+    async onSignComplete() {
+        this.log('onSignComplete')
+    }
 
-  async onSign() {
-    this.log('onSign')
-  }
+    async onBroadcast() {
+        this.log('onBroadcast')
+    }
 
-  async onSignComplete() {
-    this.log('onSignComplete')
-  }
+    async onBroadcastComplete() {
+        this.log('onBroadcastComplete')
+    }
 
-  async onBroadcast() {
-    this.log('onBroadcast')
-  }
+    prompt(args: PromptArgs): Cancelable<PromptResponse> {
+        this.log('prompt' + JSON.stringify(args))
+        return cancelable(new Promise(() => {}), (canceled) => {
+            // do things to cancel promise
+            throw canceled
+        })
+    }
 
-  async onBroadcastComplete() {
-    this.log('onBroadcastComplete')
-  }
+    status(message: string) {
+        this.log(`status:('${message}')`)
+    }
 
-  prompt(args: PromptArgs): Cancelable<PromptResponse> {
-    this.log('prompt' + JSON.stringify(args))
-    return cancelable(new Promise(() => {}), (canceled) => {
-      // do things to cancel promise
-      throw canceled
-    })
-  }
-
-  status(message: string) {
-    this.log(`status:('${message}')`)
-  }
-
-  addTranslations(): void {
-    this.log('addTranslations')
-  }
+    addTranslations(): void {
+        this.log('addTranslations')
+    }
 }
 
 export const enfSessionKitOptions: SessionKitOptions = {
-  appName: 'unittest',
-  chains: [testChainDefinition],
-  fetch: browserFetch, // Required for unit tests
-  storage: new EnfStorage(),
-  ui: new EnfUserInterface(),
-  walletPlugins: [wallet],
+    appName: 'enftest',
+    chains: [testChainDefinition],
+    storage: new EnfStorage(),
+    ui: new EnfUserInterface(),
+    walletPlugins: [wallet],
 }
 
 export const enfSessionKit = new SessionKit(enfSessionKitOptions)
 
 export const enfSessionArgs: SessionArgs = {
-  chain: testChainDefinition,
-  permissionLevel: PermissionLevel.from(testPermissionLevel),
-  walletPlugin: wallet,
+    chain: testChainDefinition,
+    permissionLevel: PermissionLevel.from(testPermissionLevel),
+    walletPlugin: wallet,
 }
 
 export const enfSessionOptions: SessionOptions = {
-  broadcast: false, // Disable broadcasting by default for tests, enable when required.
-  fetch: browserFetch, // Required for unit tests
+    broadcast: false, // Disable broadcasting by default for tests, enable when required.
 }
 
 export const enfSession = new Session(enfSessionArgs, enfSessionOptions)

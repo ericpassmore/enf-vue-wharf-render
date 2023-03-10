@@ -1,21 +1,21 @@
 <template>
-  <div class="wallet">
-    <h1>{{ header_title }}</h1>
-    <p>a wallet message should be listed above</p>
-    <p>enf session message {{ wallet_message }} </p>
-  </div>
+    <div class="wallet">
+        <h1>{{ headerTitle }}</h1>
+        <p>
+            <strong>{{ walletName }}</strong> {{ walletMessage }}
+        </p>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "Wallet",
-  props: {
-    header_title: "Empty",
-    wallet_message: "Empty Wallet!",
-  },
-};
+    name: 'WharfWallet',
+    props: {
+        headerTitle: String,
+        walletMessage: String,
+        walletName: String,
+    },
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
