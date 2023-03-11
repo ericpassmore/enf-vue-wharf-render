@@ -15,7 +15,7 @@
     <SessionError :error-title="errorTitle" :error-details="errorDetails" />
 </template>
 
-<!-- Vue3 does not work this Typescript -->
+<!-- Vue3 does not work with Typescript -->
 <!-- workaround use CompositionAPI for Typescript Support -->
 <!-- https://github.com/vuejs/vue/issues/9873 -->
 <script>
