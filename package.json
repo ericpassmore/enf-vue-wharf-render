@@ -12,7 +12,8 @@
     "@wharfkit/wallet-plugin-privatekey": "^0.3.0",
     "core-js": "^3.29.0",
     "tslib": "^2.5.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
