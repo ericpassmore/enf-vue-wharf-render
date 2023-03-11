@@ -1,11 +1,12 @@
 import {
-    ChainDefinition, Float32, Int64,
+    ChainDefinition,
+    Int64,
     PermissionLevel,
     Session,
     SessionArgs,
     SessionOptions,
-    WalletPlugin
-} from "@wharfkit/session";
+    WalletPlugin,
+} from '@wharfkit/session'
 
 export interface AccountProfileArgs {
     name: string

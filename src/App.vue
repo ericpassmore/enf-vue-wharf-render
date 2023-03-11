@@ -20,7 +20,7 @@
 <!-- https://github.com/vuejs/vue/issues/9873 -->
 <script>
 // import from wharf session kit
-import {Float32, Session} from '@wharfkit/session'
+import {Session} from '@wharfkit/session'
 import {WalletPluginPrivateKey} from '@wharfkit/wallet-plugin-privatekey'
 import {PrivateKey} from '@greymass/eosio'
 // import other vue views
