@@ -11,9 +11,9 @@
 export default {
     name: 'WharfWallet',
     props: {
-        headerTitle: String,
-        walletMessage: String,
-        walletName: String,
+        headerTitle: {type: String, default: 'default-header'},
+        walletMessage: {type: String, default: 'default-message'},
+        walletName: {type: String, default: 'default-wallet-name'},
     },
 }
 </script>

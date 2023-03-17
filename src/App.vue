@@ -1,5 +1,5 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img alt="Vue logo" src="./assets/logo.png" width="75" height="75" />
     <Wallet
         header-title="Welcome To Your Wallet"
         :wallet-message="wallet.metadata.description"
@@ -7,12 +7,12 @@
     />
     <AccountInfo
         :account-name="accountProfile.name"
-        :account-liquid-balence="accountProfile.liquidBalence"
+        :account-liquid-balance="accountProfile.liquidBalance"
         :cpu-percentage-available="accountProfile.cpuPercentageAvailable"
         :net-percentage-available="accountProfile.netPercentageAvailable"
-        :ram-useage="accountProfile.ramUsage"
+        :ram-usage="accountProfile.ramUsage"
     />
-    <SessionError :error-title="errorTitle" :error-details="errorDetails" />
+    <SessionError :is-error="isError" :error-title="errorTitle" :error-details="errorDetails" />
 </template>
 
 <!-- Vue3 does not work with Typescript -->
@@ -36,6 +36,7 @@ export default {
         return {
             errorDetails: undefined,
             errorTitle: undefined,
+            isError: undefined,
             wallet: new WalletPluginPrivateKey(PrivateKey.from(testPrivateKey)),
             session: typeof Session,
             accountProfile: new AccountProfile(),
@@ -57,7 +58,7 @@ export default {
                 .then((result) => {
                     const account = result
                     this.accountProfile.name = account.account_name.toString()
-                    this.accountProfile.liquidBalence = account.core_liquid_balance
+                    this.accountProfile.liquidBalance = account.core_liquid_balance
                         ? account.core_liquid_balance.toString()
                         : '0.0000'
                     this.accountProfile.cpuPercentageAvailable =
@@ -68,6 +69,7 @@ export default {
                     this.accountProfile.ramUsage = account.ram_usage
                 })
                 .catch((error) => {
+                    this.isError = true
                     this.errorDetails = error.toString()
                     this.errorTitle = 'error:session get account'
                 })

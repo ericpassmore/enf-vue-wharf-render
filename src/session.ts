@@ -10,7 +10,7 @@ import {
 
 export interface AccountProfileArgs {
     name: string
-    liquidBalence: string
+    liquidBalance: string
     netPercentageAvailable: number
     cpuPercentageAvailable: number
     ramQuota: Int64
@@ -18,7 +18,7 @@ export interface AccountProfileArgs {
 }
 export class AccountProfile implements AccountProfileArgs {
     name = ''
-    liquidBalence = '0.0000'
+    liquidBalance = '0.0000'
     netPercentageAvailable = 0.0
     cpuPercentageAvailable = 0.0
     ramQuota: Int64 = Int64.from(0)

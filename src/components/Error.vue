@@ -1,5 +1,5 @@
 <template>
-    <div class="error">
+    <div v-if="isError" class="error">
         <h2>{{ errorTitle }}</h2>
         <p>{{ errorDetails }}</p>
     </div>
@@ -9,8 +9,9 @@
 export default {
     name: `SessionError`,
     props: {
-        errorTitle: String,
-        errorDetails: String,
+        isError: {type: Boolean, default: false},
+        errorTitle: {type: String, default: 'default-error-title'},
+        errorDetails: {type: String, default: 'default-error-detail'},
     },
 }
 </script>
