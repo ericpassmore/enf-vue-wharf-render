@@ -11,6 +11,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2020",
+    "types": ["jest", "node", "@types/jest"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
@@ -22,9 +23,14 @@
       "scripthost"
     ]
   },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
   "include": [
     "src/**/*.ts",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "tests/**/*",
   ],
   "exclude": [
     "node_modules"
