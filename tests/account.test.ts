@@ -1,4 +1,4 @@
-import {AccountProfile} from "../src/session.ts"
+import {AccountProfile} from '../src/session'
 
 describe('account', function () {
     test('default AccountProfile', function () {
