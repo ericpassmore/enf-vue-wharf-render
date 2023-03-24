@@ -5,4 +5,10 @@ export default defineConfig({
     configureWebpack: {
         devtool: 'source-map',
     },
+    devServer: {
+        allowedHosts: 'all',
+        client: {
+            webSocketURL: 'auto://0.0.0.0:0/ws',
+        },
+    },
 })
