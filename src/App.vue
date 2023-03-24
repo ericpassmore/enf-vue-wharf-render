@@ -8,8 +8,8 @@
     <AccountInfo
         :account-name="accountProfile.name"
         :account-liquid-balance="accountProfile.liquidBalance"
-        :cpu-percentage-available="accountProfile.cpuPercentageAvailable"
-        :net-percentage-available="accountProfile.netPercentageAvailable"
+        :cpu-percentage-available="accountProfile.cpuPercentageAvailable()"
+        :net-percentage-available="accountProfile.netPercentageAvailable()"
         :ram-usage="accountProfile.ramUsage"
     />
     <SessionError :is-error="isError" :error-title="errorTitle" :error-details="errorDetails" />

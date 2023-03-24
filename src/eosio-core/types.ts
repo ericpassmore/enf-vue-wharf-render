@@ -1,5 +1,5 @@
 import {Asset, Authority, Int64, Name, NameType, TimePoint, UInt32, UInt64} from '@greymass/eosio'
-interface AccountPermission {
+export interface AccountPermission {
     perm_name: Name
     parent: Name
     required_auth: Authority
@@ -11,7 +11,7 @@ export interface AccountResourceLimit {
     max: Int64
 }
 
-interface AccountTotalResources {
+export interface AccountTotalResources {
     owner: Name
     net_weight: Asset
     cpu_weight: Asset
@@ -43,7 +43,7 @@ export interface AccountVoterInfo {
     reserved3: string
 }
 
-interface AccountRexInfoMaturities {
+export interface AccountRexInfoMaturities {
     /** Expected results from after EOSIO.Contracts v1.9.0 */
     key?: TimePoint
     value?: Int64
@@ -52,7 +52,7 @@ interface AccountRexInfoMaturities {
     second?: Int64
 }
 
-interface AccountRexInfo {
+export interface AccountRexInfo {
     version: UInt32
     owner: Name
     vote_stake: Asset

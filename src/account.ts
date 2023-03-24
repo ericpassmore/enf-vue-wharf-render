@@ -1,6 +1,5 @@
 import {Int64, UInt64} from '@wharfkit/session'
 import {AccountObject, AccountResourceLimit} from '@/eosio-core/types'
-import {arrayToHex} from '@/eosio-core/utils'
 export interface AccountProfileArgs {
     name: string
     liquidBalance: string
@@ -8,8 +7,8 @@ export interface AccountProfileArgs {
     netLimit: AccountResourceLimit
     ramQuota: Int64
     ramUsage: UInt64
-    netPercentageAvailable: number
-    cpuPercentageAvailable: number
+    netPercentageAvailable(): number
+    cpuPercentageAvailable(): number
 }
 export class AccountProfile implements AccountProfileArgs {
     name
@@ -18,8 +17,6 @@ export class AccountProfile implements AccountProfileArgs {
     cpuLimit
     ramQuota
     ramUsage
-    netPercentageAvailable
-    cpuPercentageAvailable
 
     constructor() {
         this.name = ''
@@ -45,10 +42,8 @@ export class AccountProfile implements AccountProfileArgs {
             : '0.0000'
         this.netLimit = sessionAccount.net_limit
         this.cpuLimit = sessionAccount.cpu_limit
-        this.ramQuota = Int64.from(0)
-        this.ramUsage = UInt64.from(0)
-        this.netPercentageAvailable = this.calcNetPercentageAvailable()
-        this.cpuPercentageAvailable = this.calcCPUPercentageAvailable()
+        this.ramQuota = sessionAccount.ram_quota
+        this.ramUsage = sessionAccount.ram_usage
     }
 
     calculatePercentage(limits: AccountResourceLimit): number {
@@ -60,10 +55,10 @@ export class AccountProfile implements AccountProfileArgs {
         }
         return 0
     }
-    calcNetPercentageAvailable(): number {
+    netPercentageAvailable(): number {
         return this.calculatePercentage(this.netLimit)
     }
-    calcCPUPercentageAvailable(): number {
+    cpuPercentageAvailable(): number {
         return this.calculatePercentage(this.cpuLimit)
     }
 }
