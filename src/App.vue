@@ -29,7 +29,9 @@ import SessionError from '@/components/Error.vue'
 import AccountInfo from '@/components/AccountInfo.vue'
 // import out app scripts and config
 import {testChainDefinition, testPermissionLevel, testPrivateKey} from '@/config'
-import {AccountProfile, createSession} from '@/session.ts'
+import {createSession} from '@/session.ts'
+import {AccountProfile} from '@/account.ts'
+
 export default {
     components: {SessionError, Wallet, AccountInfo},
     data() {
@@ -57,16 +59,7 @@ export default {
                 .get_account(this.session.actor)
                 .then((result) => {
                     const account = result
-                    this.accountProfile.name = account.account_name.toString()
-                    this.accountProfile.liquidBalance = account.core_liquid_balance
-                        ? account.core_liquid_balance.toString()
-                        : '0.0000'
-                    this.accountProfile.cpuPercentageAvailable =
-                        account.cpu_limit.available / account.cpu_limit.max
-                    this.accountProfile.netPercentageAvailable =
-                        account.net_limit.available / account.net_limit.max
-                    this.accountProfile.ramQuota = account.ram_quota
-                    this.accountProfile.ramUsage = account.ram_usage
+                    this.accountProfile.fromAccount(account)
                 })
                 .catch((error) => {
                     this.isError = true

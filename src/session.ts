@@ -1,29 +1,11 @@
 import {
     ChainDefinition,
-    Int64,
     PermissionLevel,
     Session,
     SessionArgs,
     SessionOptions,
     WalletPlugin,
 } from '@wharfkit/session'
-
-export interface AccountProfileArgs {
-    name: string
-    liquidBalance: string
-    netPercentageAvailable: number
-    cpuPercentageAvailable: number
-    ramQuota: Int64
-    ramUsage: Int64
-}
-export class AccountProfile implements AccountProfileArgs {
-    name = ''
-    liquidBalance = '0.0000'
-    netPercentageAvailable = 0.0
-    cpuPercentageAvailable = 0.0
-    ramQuota: Int64 = Int64.from(0)
-    ramUsage: Int64 = Int64.from(0)
-}
 
 export function createSession(
     chainParams: {id: string; url: string},
