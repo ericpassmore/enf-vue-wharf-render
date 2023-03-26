@@ -1,0 +1,47 @@
+{
+  "request": {
+    "path": "https://jungle4.cryptolions.io:443/v1/chain/get_account",
+    "params": {
+      "method": "POST",
+      "body": "{\"account_name\":\"enfsession11\"}"
+    }
+  },
+  "headers": {
+    "access-control-allow-headers": "X-Requested-With,Accept,Content-Type,Origin",
+    "access-control-allow-methods": "GET, POST, OPTIONS",
+    "access-control-allow-origin": "*",
+    "connection": "close",
+    "content-length": "1616",
+    "content-type": "application/json",
+    "date": "Mar 17 09:09:30 2023 GMT",
+    "server": "nginx/1.18.0 (Ubuntu)"
+  },
+  "status": 200,
+  "json": {
+    "account_name":"enfsession11",
+    "head_block_num":68131369,
+    "head_block_time":"2023-03-26T03:27:11.500",
+    "privileged":false,
+    "last_code_update":"1970-01-01T00:00:00.000",
+    "created":"2023-03-07T18:40:22.500",
+    "core_liquid_balance":"97.7480 EOS",
+    "ram_quota":5494,
+    "net_weight":10000,
+    "cpu_weight":10000,
+    "net_limit":{"used":504,"available":14912,"max":15416,"last_usage_update_time":"2023-03-11T05:31:55.500","current_used":0},
+    "cpu_limit":{"used":493,"available":2375,"max":2868,"last_usage_update_time":"2023-03-11T05:31:55.500","current_used":0},
+    "ram_usage":4070,
+    "permissions":[
+      {"perm_name":"active","parent":"owner","required_auth":{"threshold":1,"keys":[{"key":"EOS6eB44TR9aiyqDpN1SgxEzhQrr1p5Ev3aXwzCspNfmRMEHz9qvZ","weight":1}],"accounts":[],"waits":[]},"linked_actions":[]},
+      {"perm_name":"owner","parent":"","required_auth":{"threshold":1,"keys":[{"key":"EOS6eB44TR9aiyqDpN1SgxEzhQrr1p5Ev3aXwzCspNfmRMEHz9qvZ","weight":1}],"accounts":[],"waits":[]},"linked_actions":[]}
+    ],
+    "total_resources":{"owner":"enfsession11","net_weight":"1.0000 EOS","cpu_weight":"1.0000 EOS","ram_bytes":4094},
+    "self_delegated_bandwidth":{"from":"enfsession11","to":"enfsession11","net_weight":"1.0000 EOS","cpu_weight":"1.0000 EOS"},
+    "refund_request":null,
+    "voter_info":{"owner":"enfsession11","proxy":"","producers":[],"staked":20000,"last_vote_weight":"0.00000000000000000","proxied_vote_weight":"0.00000000000000000","is_proxy":0,"flags1":0,"reserved2":0,"reserved3":"0 "},
+    "rex_info":null,
+    "subjective_cpu_bill_limit":{"used":0,"available":0,"max":0,"last_usage_update_time":"2000-01-01T00:00:00.000","current_used":0},
+    "eosio_any_linked_actions":[]
+  },
+  "text": "{\"account_name\":\"enfsession11\",\"head_block_num\":68131369,\"head_block_time\":\"2023-03-26T03:27:11.500\",\"privileged\":false,\"last_code_update\":\"1970-01-01T00:00:00.000\",\"created\":\"2023-03-07T18:40:22.500\",\"core_liquid_balance\":\"97.7480 EOS\",\"ram_quota\":5494,\"net_weight\":10000,\"cpu_weight\":10000,\"net_limit\":{\"used\":504,\"available\":14912,\"max\":15416,\"last_usage_update_time\":\"2023-03-11T05:31:55.500\",\"current_used\":0},\"cpu_limit\":{\"used\":493,\"available\":2375,\"max\":2868,\"last_usage_update_time\":\"2023-03-11T05:31:55.500\",\"current_used\":0},\"ram_usage\":4070,\"permissions\":[{\"perm_name\":\"active\",\"parent\":\"owner\",\"required_auth\":{\"threshold\":1,\"keys\":[{\"key\":\"EOS6eB44TR9aiyqDpN1SgxEzhQrr1p5Ev3aXwzCspNfmRMEHz9qvZ\",\"weight\":1}],\"accounts\":[],\"waits\":[]},\"linked_actions\":[]},{\"perm_name\":\"owner\",\"parent\":\"\",\"required_auth\":{\"threshold\":1,\"keys\":[{\"key\":\"EOS6eB44TR9aiyqDpN1SgxEzhQrr1p5Ev3aXwzCspNfmRMEHz9qvZ\",\"weight\":1}],\"accounts\":[],\"waits\":[]},\"linked_actions\":[]}],\"total_resources\":{\"owner\":\"enfsession11\",\"net_weight\":\"1.0000 EOS\",\"cpu_weight\":\"1.0000 EOS\",\"ram_bytes\":4094},\"self_delegated_bandwidth\":{\"from\":\"enfsession11\",\"to\":\"enfsession11\",\"net_weight\":\"1.0000 EOS\",\"cpu_weight\":\"1.0000 EOS\"},\"refund_request\":null,\"voter_info\":{\"owner\":\"enfsession11\",\"proxy\":\"\",\"producers\":[],\"staked\":20000,\"last_vote_weight\":\"0.00000000000000000\",\"proxied_vote_weight\":\"0.00000000000000000\",\"is_proxy\":0,\"flags1\":0,\"reserved2\":0,\"reserved3\":\"0 \"},\"rex_info\":null,\"subjective_cpu_bill_limit\":{\"used\":0,\"available\":0,\"max\":0,\"last_usage_update_time\":\"2000-01-01T00:00:00.000\",\"current_used\":0},\"eosio_any_linked_actions\":[]}"
+}

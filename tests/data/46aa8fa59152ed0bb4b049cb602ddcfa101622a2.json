@@ -1,0 +1,132 @@
+{
+  "request": {
+    "path": "https://jungle4.cryptolions.io:443/v1/chain/get_account",
+    "params": {
+      "method": "POST",
+      "body": "{\"account_name\":\"enfsession22\"}"
+    }
+  },
+  "headers": {
+    "access-control-allow-headers": "X-Requested-With,Accept,Content-Type,Origin",
+    "access-control-allow-methods": "GET, POST, OPTIONS",
+    "access-control-allow-origin": "*",
+    "connection": "close",
+    "content-length": "1815",
+    "content-type": "application/json",
+    "date": "Mar 17 09:09:30 2023 GMT",
+    "server": "nginx/1.18.0 (Ubuntu)"
+  },
+  "status": 200,
+  "json": {
+  "account_name": "enfsession22",
+  "head_block_num": 68119611,
+  "head_block_time": "2023-03-26T01:49:11.500",
+  "privileged": false,
+  "last_code_update": "1970-01-01T00:00:00.000",
+  "created": "2023-03-07T18:43:01.500",
+  "core_liquid_balance": "2.2520 EOS",
+  "ram_quota": 5494,
+  "net_weight": 10000,
+  "cpu_weight": 10000,
+  "net_limit": {
+    "used": 161,
+    "available": 15255,
+    "max": 15416,
+    "last_usage_update_time": "2023-03-07T19:39:34.000",
+    "current_used": 0
+  },
+  "cpu_limit": {
+    "used": 146,
+    "available": 2722,
+    "max": 2868,
+    "last_usage_update_time": "2023-03-07T19:39:34.000",
+    "current_used": 0
+  },
+  "ram_usage": 3784,
+  "permissions": [
+    {
+      "perm_name": "active",
+      "parent": "owner",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS6EmrMgn4bZmipG8EnspgYwjpCWnLH9n5a3XyTWutthf7HGyFYW",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": []
+    },
+    {
+      "perm_name": "owner",
+      "parent": "",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS6EmrMgn4bZmipG8EnspgYwjpCWnLH9n5a3XyTWutthf7HGyFYW",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": []
+    },
+    {
+      "perm_name": "test",
+      "parent": "active",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS6JtzirkeWxt1atAaJ8Vpj9MWQZvVJ6jkJT9L2199zHH3TaWd71",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": []
+    }
+  ],
+  "total_resources": {
+    "owner": "enfsession22",
+    "net_weight": "1.0000 EOS",
+    "cpu_weight": "1.0000 EOS",
+    "ram_bytes": 4094
+  },
+  "self_delegated_bandwidth": {
+    "from": "enfsession22",
+    "to": "enfsession22",
+    "net_weight": "1.0000 EOS",
+    "cpu_weight": "1.0000 EOS"
+  },
+  "refund_request": null,
+  "voter_info": {
+    "owner": "enfsession22",
+    "proxy": "",
+    "producers": [],
+    "staked": 20000,
+    "last_vote_weight": "0.00000000000000000",
+    "proxied_vote_weight": "0.00000000000000000",
+    "is_proxy": 0,
+    "flags1": 0,
+    "reserved2": 0,
+    "reserved3": "0 "
+  },
+  "rex_info": null,
+  "subjective_cpu_bill_limit": {
+    "used": 0,
+    "available": 0,
+    "max": 0,
+    "last_usage_update_time": "2000-01-01T00:00:00.000",
+    "current_used": 0
+  },
+  "eosio_any_linked_actions": []
+  },
+  "text":"{\"account_name\":\"enfsession22\",\"head_block_num\":68125205,\"head_block_time\":\"2023-03-26T02:35:48.500\",\"privileged\":false,\"last_code_update\":\"1970-01-01T00:00:00.000\",\"created\":\"2023-03-07T18:43:01.500\",\"core_liquid_balance\":\"2.2520 EOS\",\"ram_quota\":5494,\"net_weight\":10000,\"cpu_weight\":10000,\"net_limit\":{\"used\":161,\"available\":15255,\"max\":15416,\"last_usage_update_time\":\"2023-03-07T19:39:34.000\",\"current_used\":0},\"cpu_limit\":{\"used\":146,\"available\":2722,\"max\":2868,\"last_usage_update_time\":\"2023-03-07T19:39:34.000\",\"current_used\":0},\"ram_usage\":3784,\"permissions\":[{\"perm_name\":\"active\",\"parent\":\"owner\",\"required_auth\":{\"threshold\":1,\"keys\":[{\"key\":\"EOS6EmrMgn4bZmipG8EnspgYwjpCWnLH9n5a3XyTWutthf7HGyFYW\",\"weight\":1}],\"accounts\":[],\"waits\":[]},\"linked_actions\":[]},{\"perm_name\":\"owner\",\"parent\":\"\",\"required_auth\":{\"threshold\":1,\"keys\":[{\"key\":\"EOS6EmrMgn4bZmipG8EnspgYwjpCWnLH9n5a3XyTWutthf7HGyFYW\",\"weight\":1}],\"accounts\":[],\"waits\":[]},\"linked_actions\":[]},{\"perm_name\":\"test\",\"parent\":\"active\",\"required_auth\":{\"threshold\":1,\"keys\":[{\"key\":\"EOS6JtzirkeWxt1atAaJ8Vpj9MWQZvVJ6jkJT9L2199zHH3TaWd71\",\"weight\":1}],\"accounts\":[],\"waits\":[]},\"linked_actions\":[]}],\"total_resources\":{\"owner\":\"enfsession22\",\"net_weight\":\"1.0000 EOS\",\"cpu_weight\":\"1.0000 EOS\",\"ram_bytes\":4094},\"self_delegated_bandwidth\":{\"from\":\"enfsession22\",\"to\":\"enfsession22\",\"net_weight\":\"1.0000 EOS\",\"cpu_weight\":\"1.0000 EOS\"},\"refund_request\":null,\"voter_info\":{\"owner\":\"enfsession22\",\"proxy\":\"\",\"producers\":[],\"staked\":20000,\"last_vote_weight\":\"0.00000000000000000\",\"proxied_vote_weight\":\"0.00000000000000000\",\"is_proxy\":0,\"flags1\":0,\"reserved2\":0,\"reserved3\":\"0 \"},\"rex_info\":null,\"subjective_cpu_bill_limit\":{\"used\":0,\"available\":0,\"max\":0,\"last_usage_update_time\":\"2000-01-01T00:00:00.000\",\"current_used\":0},\"eosio_any_linked_actions\":[]}"
+}
