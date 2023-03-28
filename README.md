@@ -15,7 +15,7 @@ pnpm run serve
 pnpm run build
 ```
 
-### Lints and fixes files
+### Lints and fixes the files
 ```
 pnpm run lint
 ```
