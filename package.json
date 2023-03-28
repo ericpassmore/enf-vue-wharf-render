@@ -8,7 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev-build": "vue-cli-service build --mode development",
-    "test": "NODE_OPTIONS=--experimental-vm-modules pnpm exec jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules pnpm exec jest --collectCoverageFrom=src/**/*ts --collectCoverageFrom=!src/main.ts --collectCoverageFrom=!src/eosio-core/types.ts"
   },
   "dependencies": {
     "@wharfkit/session": "^0.3.2",

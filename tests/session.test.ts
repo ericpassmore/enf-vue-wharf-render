@@ -1,9 +1,26 @@
-import { bigBrotherMockSession, mockSession } from "./utils/mock-session";
+import {
+    littleBrotherMockAccountName,
+    littleBrotherMockPermissionLevel,
+    mockChainDefinition,
+    mockPermissionName
+} from "./utils/mock-config";
+import {bigBrotherMockSession, mockSession} from './utils/mock-session'
 import {Checksum256, Name} from '@wharfkit/session'
+import {createSession} from '../src/session'
+import {makeWallet} from './utils/mock-wallet'
+
 describe('session', function () {
     test('basic', function () {
         expect(mockSession.appName).toBeTruthy()
         expect(mockSession.appName).toStrictEqual(Name.from('ENF Mock Session'))
+    })
+    test('create session', function () {
+        const session = createSession(
+            mockChainDefinition,
+            littleBrotherMockPermissionLevel,
+            makeWallet()
+        )
+        expect(session.actor).toStrictEqual(Name.from(littleBrotherMockAccountName))
     })
     test('get little brother account', async function () {
         const actor = await mockSession.client.v1.chain.get_account(mockSession.actor)

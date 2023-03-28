@@ -1,5 +1,9 @@
 import {Int64, UInt64} from '@wharfkit/session'
-import {AccountObject, AccountResourceLimit} from '@/eosio-core/types'
+import {AccountObject, AccountResourceLimit, AccountVoterInfo} from '@/eosio-core/types'
+/*
+ * AccountProfileArs holds the interface for the Account Information we want
+ * includes helper function for creating AccountProfile from Session information
+ */
 export interface AccountProfileArgs {
     name: string
     liquidBalance: string
@@ -10,6 +14,10 @@ export interface AccountProfileArgs {
     netPercentageAvailable(): number
     cpuPercentageAvailable(): number
 }
+/*
+ * Our Account Object
+ * Initialized with reasonable defaults so we can create an empty profile
+ */
 export class AccountProfile implements AccountProfileArgs {
     name
     liquidBalance
@@ -18,6 +26,7 @@ export class AccountProfile implements AccountProfileArgs {
     ramQuota
     ramUsage
 
+    // set default values
     constructor() {
         this.name = ''
         this.liquidBalance = '0.0000'
@@ -35,6 +44,8 @@ export class AccountProfile implements AccountProfileArgs {
         this.ramUsage = Int64.from(0)
     }
 
+    // populate AccountProfile from Session.AccountObject
+    // see Docs for AccountObject https://greymass.github.io/eosio-core/classes/API.v1.AccountObject.html
     fromAccount(sessionAccount: AccountObject) {
         this.name = sessionAccount.account_name.toString()
         this.liquidBalance = sessionAccount.core_liquid_balance

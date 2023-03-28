@@ -1,13 +1,17 @@
 import {AccountProfile} from '../src/account'
 import {AccountResourceLimit} from '../src/eosio-core/types'
-import {Int64, UInt64} from '@wharfkit/session'
+import {Asset, Int64, UInt64} from '@wharfkit/session'
 import {accountObject} from './utils/mock-account'
 
+// build a zero balance directly from Asset and Symbol type
+// first argument is amount of tokens, second argument is token type
+// 4 == Core Symbol Type , EOS == Symbol Name
+const zeroBalance = new Asset(UInt64.from(0), Asset.Symbol.from('4,EOS'))
 describe('account', function () {
     test('default AccountProfile', function () {
         const defaultAccountProfile = new AccountProfile()
         expect(defaultAccountProfile.name).toBe('')
-        expect(defaultAccountProfile.liquidBalance).toBe('0.0000')
+        expect(defaultAccountProfile.liquidBalance).toBe(zeroBalance.toString())
         expect(defaultAccountProfile.netPercentageAvailable()).toBe(0)
         expect(defaultAccountProfile.cpuPercentageAvailable()).toBe(0)
         expect(defaultAccountProfile.ramQuota).toStrictEqual(Int64.from(0))
@@ -31,5 +35,12 @@ describe('account', function () {
         expect(account.ramQuota).toStrictEqual(UInt64.from(1024))
         expect(account.cpuPercentageAvailable()).toBe(0.8)
         expect(account.netPercentageAvailable()).toBe(0.8)
+    })
+
+    test('zero balance', function () {
+        const account = new AccountProfile()
+        accountObject.core_liquid_balance = undefined
+        account.fromAccount(accountObject)
+        expect(account.liquidBalance).toBe(zeroBalance.toString())
     })
 })

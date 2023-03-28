@@ -7,6 +7,10 @@ import {
     WalletPlugin,
 } from '@wharfkit/session'
 
+/*
+ * creates a new Wharf Session Object
+ * broadcasts are always off
+ */
 export function createSession(
     chainParams: {id: string; url: string},
     permissionLevel: string,

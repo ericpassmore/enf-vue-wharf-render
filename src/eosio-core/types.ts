@@ -1,4 +1,12 @@
 import {Asset, Authority, Int64, Name, NameType, TimePoint, UInt32, UInt64} from '@greymass/eosio'
+
+/*
+ * Various interfaces which may be needed to work with Account
+ * These interfaces allow you to extract information from account
+ * and if needed update account data
+ *
+ * These are defined in @greymass/eosio; however they are not exported
+ */
 export interface AccountPermission {
     perm_name: Name
     parent: Name

@@ -1,6 +1,6 @@
 <template>
     <div class="wallet">
-        <h1>{{ headerTitle }}</h1>
+        <h3>Wallet</h3>
         <p>
             <strong>{{ walletName }}</strong> {{ walletMessage }}
         </p>
@@ -11,7 +11,6 @@
 export default {
     name: 'WharfWallet',
     props: {
-        headerTitle: {type: String, default: 'default-header'},
         walletMessage: {type: String, default: 'default-message'},
         walletName: {type: String, default: 'default-wallet-name'},
     },

@@ -1,3 +1,8 @@
+/*
+ * Used for Testing. Function to convert from
+ *  - hex string to binary arrays
+ *  - binary arrays to hex strings
+ */
 const hexLookup: {enc?: Array<string>; dec?: Record<string, number>} = {}
 function buildHexLookup() {
     hexLookup.enc = new Array<string>(0xff)

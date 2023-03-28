@@ -1,10 +1,7 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" width="75" height="75" />
-    <Wallet
-        header-title="Welcome To Your Wallet"
-        :wallet-message="wallet.metadata.description"
-        :wallet-name="wallet.metadata.name"
-    />
+    <img id="logo" alt="Vue logo" src="./assets/logo.png" width="75" height="75" />
+    <h1>Welcome To Your Wallet</h1>
+    <Wallet :wallet-message="wallet.metadata.description" :wallet-name="wallet.metadata.name" />
     <AccountInfo
         :account-name="accountProfile.name"
         :account-liquid-balance="accountProfile.liquidBalance"
@@ -12,6 +9,7 @@
         :net-percentage-available="accountProfile.netPercentageAvailable()"
         :ram-usage="accountProfile.ramUsage"
     />
+    <TransferFunds />
     <SessionError :is-error="isError" :error-title="errorTitle" :error-details="errorDetails" />
 </template>
 
@@ -19,6 +17,7 @@
 <!-- workaround use CompositionAPI for Typescript Support -->
 <!-- https://github.com/vuejs/vue/issues/9873 -->
 <script>
+
 // import from wharf session kit
 import {Session} from '@wharfkit/session'
 import {WalletPluginPrivateKey} from '@wharfkit/wallet-plugin-privatekey'
@@ -27,13 +26,14 @@ import {PrivateKey} from '@greymass/eosio'
 import Wallet from '@/components/Wallet.vue'
 import SessionError from '@/components/Error.vue'
 import AccountInfo from '@/components/AccountInfo.vue'
+import TransferFunds from '@/components/Transfer.vue'
 // import out app scripts and config
 import {testChainDefinition, testPermissionLevel, testPrivateKey} from '@/config'
 import {createSession} from '@/session.ts'
 import {AccountProfile} from '@/account.ts'
 
 export default {
-    components: {SessionError, Wallet, AccountInfo},
+    components: { TransferFunds, SessionError, Wallet, AccountInfo},
     data() {
         return {
             errorDetails: undefined,
@@ -46,13 +46,14 @@ export default {
     },
     mounted() {
         this.session = createSession(testChainDefinition, testPermissionLevel, this.wallet)
-        this.wallet.metadata.description = this.didLogin()
+        this.wallet.metadata.description = 'enf test wallet'
+        this.wallet.metadata.name = 'Private Key Wallet'
+        this.didLogin()
         this.refreshAccount()
     },
     methods: {
         didLogin() {
             console.info('running did login')
-            return 'enf test wallet from wallet-plugin-privatekey'
         },
         refreshAccount() {
             this.session.client.v1.chain
@@ -76,8 +77,28 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    text-align: left;
     color: #2c3e50;
     margin-top: 60px;
+    margin-left: 5em;
+}
+#logo { margin-left: 10em; }
+.wallet { border: 1px solid grey; padding-left: 1em; }
+.account {
+  padding: 1em;
+  border: 1px solid grey;
+  margin-top: 1em;
+}
+.account ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.transfer {
+  border: 1px solid grey;
+  margin-top: 1em;
+  padding: 1em;
+}
+#sourceAccount {
+  background-color: #cccccc;
 }
 </style>

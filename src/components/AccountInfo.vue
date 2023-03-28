@@ -1,6 +1,7 @@
 <template>
     <div class="account">
-        <h3>Account: {{ accountName }}</h3>
+        <h3>Account</h3>
+        <h4>account name: {{ accountName }}</h4>
         <ul>
             <li><strong>Balance</strong> {{ accountLiquidBalance }}</li>
             <li>
