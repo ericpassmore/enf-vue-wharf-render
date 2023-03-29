@@ -3,9 +3,7 @@ import {AccountResourceLimit} from '../src/eosio-core/types'
 import {Asset, Int64, UInt64} from '@wharfkit/session'
 import {accountObject} from './utils/mock-account'
 
-// build a zero balance directly from Asset and Symbol type
-// first argument is amount of tokens, second argument is token type
-// 4 == Core Symbol Type , EOS == Symbol Name
+// create a zero balance EOS string
 const quantity = 0
 const zeroBalance = `${quantity.toFixed(4)} EOS`
 describe('account', function () {
@@ -44,7 +42,7 @@ describe('account', function () {
         const account = new AccountProfile()
         accountObject.core_liquid_balance = undefined
         account.fromAccount(accountObject)
-        // will handle undefined balence
+        // will handle undefined balance
         expect(account.liquidBalance).toBe(zeroBalance.toString())
     })
 })
