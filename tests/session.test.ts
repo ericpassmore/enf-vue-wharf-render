@@ -2,12 +2,12 @@ import {
     littleBrotherMockAccountName,
     littleBrotherMockPermissionLevel,
     mockChainDefinition,
-    mockPermissionName
-} from "./utils/mock-config";
+} from './utils/mock-config'
 import {bigBrotherMockSession, mockSession} from './utils/mock-session'
 import {Checksum256, Name} from '@wharfkit/session'
 import {createSession} from '../src/session'
 import {makeWallet} from './utils/mock-wallet'
+import {mockFetch} from './utils/mock-fetch'
 
 describe('session', function () {
     test('basic', function () {
@@ -18,7 +18,8 @@ describe('session', function () {
         const session = createSession(
             mockChainDefinition,
             littleBrotherMockPermissionLevel,
-            makeWallet()
+            makeWallet(),
+            mockFetch
         )
         expect(session.actor).toStrictEqual(Name.from(littleBrotherMockAccountName))
     })

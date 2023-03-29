@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import {
     ChainDefinition,
     PermissionLevel,
@@ -14,7 +15,8 @@ import {
 export function createSession(
     chainParams: {id: string; url: string},
     permissionLevel: string,
-    wallet: WalletPlugin
+    wallet: WalletPlugin,
+    fetch?: fetch
 ): Session {
     const enfSessionArgs: SessionArgs = {
         chain: ChainDefinition.from(chainParams),
@@ -23,6 +25,7 @@ export function createSession(
     }
     const enfSessionOptions: SessionOptions = {
         broadcast: false,
+        fetch: fetch,
     }
     return new Session(enfSessionArgs, enfSessionOptions)
 }
