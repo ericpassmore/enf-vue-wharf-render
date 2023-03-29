@@ -9,9 +9,9 @@ export const mockChainDefinition = {
     id: mockChainId,
     url: mockUrl,
 }
-export const mockPrivateKey = '5JJ5A6t4NUQPUohmrtraHuAXpTfnxLrf84sysrjDtQwikQedCWU'
+export const mockPrivateKey = '5JSk84EAgn2rKHD8WNpU2VbFjbiENUUf9jfd7bexrvAF6qRUSKB'
 export const littleBrotherMockAccountName = 'enfsession22'
 export const bigBrotherMockAccountName = 'enfsession11'
-export const mockPermissionName = 'test'
+export const mockPermissionName = 'active'
 export const littleBrotherMockPermissionLevel = `${littleBrotherMockAccountName}@${mockPermissionName}`
 export const bigBrotherMockPermissionLevel = `${bigBrotherMockAccountName}@${mockPermissionName}`

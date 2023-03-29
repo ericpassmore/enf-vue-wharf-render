@@ -37,7 +37,7 @@ describe('session', function () {
     test('get chain info', async function () {
         const infoResponse = await mockSession.client.v1.chain.get_info()
         expect(infoResponse.head_block_id).toStrictEqual(
-            Checksum256.from('040f8dbad4263fb76698ce76b680dc56f755ba3b12641be9d500f2107111f2e4')
+            Checksum256.from('041789995a82ad9e2b09ae2de7a045bbbbda0e52ad1e96dd5e893aec6072c1fc')
         )
     })
 })

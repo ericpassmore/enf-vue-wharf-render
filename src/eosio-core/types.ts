@@ -1,4 +1,14 @@
-import {Asset, Authority, Int64, Name, NameType, TimePoint, UInt32, UInt64} from '@greymass/eosio'
+import {
+    Asset,
+    Authority,
+    Int64,
+    Name,
+    NameType,
+    Struct,
+    TimePoint,
+    UInt32,
+    UInt64,
+} from '@greymass/eosio'
 
 /*
  * Various interfaces which may be needed to work with Account
@@ -98,4 +108,12 @@ export interface AccountObject {
     rex_info?: AccountRexInfo
 
     getPermission(permission: NameType): AccountPermission
+}
+
+@Struct.type('transfer')
+export class Transfer extends Struct {
+    @Struct.field('name') from!: Name
+    @Struct.field('name') to!: Name
+    @Struct.field('asset') quantity!: Asset
+    @Struct.field('string') memo!: string
 }

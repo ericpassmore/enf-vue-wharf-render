@@ -6,11 +6,14 @@ import {accountObject} from './utils/mock-account'
 // build a zero balance directly from Asset and Symbol type
 // first argument is amount of tokens, second argument is token type
 // 4 == Core Symbol Type , EOS == Symbol Name
-const zeroBalance = new Asset(UInt64.from(0), Asset.Symbol.from('4,EOS'))
+const quantity = 0
+const zeroBalance = `${quantity.toFixed(4)} EOS`
 describe('account', function () {
     test('default AccountProfile', function () {
+        // create an empty AccountProfile with reasonable defaults
         const defaultAccountProfile = new AccountProfile()
         expect(defaultAccountProfile.name).toBe('')
+        // expect default has a zero balance
         expect(defaultAccountProfile.liquidBalance).toBe(zeroBalance.toString())
         expect(defaultAccountProfile.netPercentageAvailable()).toBe(0)
         expect(defaultAccountProfile.cpuPercentageAvailable()).toBe(0)
@@ -41,6 +44,7 @@ describe('account', function () {
         const account = new AccountProfile()
         accountObject.core_liquid_balance = undefined
         account.fromAccount(accountObject)
+        // will handle undefined balence
         expect(account.liquidBalance).toBe(zeroBalance.toString())
     })
 })

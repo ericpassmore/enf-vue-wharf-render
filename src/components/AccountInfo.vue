@@ -37,8 +37,8 @@ export default {
         accountLiquidBalance: {type: String, default: 'default-balance'},
         cpuPercentageAvailable: {type: Number, default: 0.0},
         netPercentageAvailable: {type: Number, default: 0.0},
-        ramQuota: {type: Int64, default: 0},
-        ramUsage: {type: Int64, default: 0},
+        ramQuota: {type: Number, default: 0},
+        ramUsage: {type: Number, default: 0},
     },
 }
 </script>

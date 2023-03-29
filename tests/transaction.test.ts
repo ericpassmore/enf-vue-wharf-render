@@ -42,7 +42,7 @@ describe('transaction', function () {
             PrivateKey.from(mockPrivateKey)
         )
         expect(signedTransaction.signingDigest(info.chain_id).toString()).toBe(
-            '1d8d5d5290623cb8f398203697db56f39dd19ae72b5f45a7b0a9d4c22c301cfc'
+            'f8b3cd041851f18db660a3e3c40ed14ad8e926bb76dd63630ab1d839a5e9bf91'
         )
     })
 

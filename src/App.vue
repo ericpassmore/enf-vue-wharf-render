@@ -7,17 +7,20 @@
         :account-liquid-balance="accountProfile.liquidBalance"
         :cpu-percentage-available="accountProfile.cpuPercentageAvailable()"
         :net-percentage-available="accountProfile.netPercentageAvailable()"
-        :ram-usage="accountProfile.ramUsage"
+        :ram-usage="accountProfile.ramUsage.toNumber()"
     />
-    <TransferFunds />
-    <SessionError :is-error="isError" :error-title="errorTitle" :error-details="errorDetails" />
+    <TransferFunds
+        :is-active="enableTransfer"
+        :private-key="getTestPrivateKey()"
+        :account-name="accountProfile.name"
+    />
+    <SessionError :is-error="isError" :error-title="errorName" :error-details="errorDetails" />
 </template>
 
 <!-- Vue3 does not work with Typescript -->
 <!-- workaround use CompositionAPI for Typescript Support -->
 <!-- https://github.com/vuejs/vue/issues/9873 -->
 <script>
-
 // import from wharf session kit
 import {Session} from '@wharfkit/session'
 import {WalletPluginPrivateKey} from '@wharfkit/wallet-plugin-privatekey'
@@ -28,17 +31,18 @@ import SessionError from '@/components/Error.vue'
 import AccountInfo from '@/components/AccountInfo.vue'
 import TransferFunds from '@/components/Transfer.vue'
 // import out app scripts and config
-import {testChainDefinition, testPermissionLevel, testPrivateKey} from '@/config'
+import {enableTransfer, testChainDefinition, testPermissionLevel, testPrivateKey} from '@/config'
 import {createSession} from '@/session.ts'
 import {AccountProfile} from '@/account.ts'
 
 export default {
-    components: { TransferFunds, SessionError, Wallet, AccountInfo},
+    components: {TransferFunds, SessionError, Wallet, AccountInfo},
     data() {
         return {
             errorDetails: undefined,
-            errorTitle: undefined,
+            errorName: undefined,
             isError: undefined,
+            enableTransfer: enableTransfer,
             wallet: new WalletPluginPrivateKey(PrivateKey.from(testPrivateKey)),
             session: typeof Session,
             accountProfile: new AccountProfile(),
@@ -52,6 +56,9 @@ export default {
         this.refreshAccount()
     },
     methods: {
+        getTestPrivateKey() {
+            return testPrivateKey
+        },
         didLogin() {
             console.info('running did login')
         },
@@ -65,7 +72,7 @@ export default {
                 .catch((error) => {
                     this.isError = true
                     this.errorDetails = error.toString()
-                    this.errorTitle = 'error:session get account'
+                    this.errorName = 'error:session get account'
                 })
         },
     },
@@ -82,23 +89,28 @@ export default {
     margin-top: 60px;
     margin-left: 5em;
 }
-#logo { margin-left: 10em; }
-.wallet { border: 1px solid grey; padding-left: 1em; }
+#logo {
+    margin-left: 10em;
+}
+.wallet {
+    border: 1px solid grey;
+    padding-left: 1em;
+}
 .account {
-  padding: 1em;
-  border: 1px solid grey;
-  margin-top: 1em;
+    padding: 1em;
+    border: 1px solid grey;
+    margin-top: 1em;
 }
 .account ul {
-  list-style-type: none;
-  padding-left: 0;
+    list-style-type: none;
+    padding-left: 0;
 }
 .transfer {
-  border: 1px solid grey;
-  margin-top: 1em;
-  padding: 1em;
+    border: 1px solid grey;
+    margin-top: 1em;
+    padding: 1em;
 }
 #sourceAccount {
-  background-color: #cccccc;
+    background-color: #cccccc;
 }
 </style>
