@@ -25,9 +25,9 @@ export async function assembleTransfer(
     usingPermission: string,
     // key to sign transaction
     signingKey: string,
-    // name of a account, string with 12 chars
+    // name of an account, string with 12 chars
     toAccount: string,
-    // example "1.0000 EOS", requires symbol name
+    // example 1.0000
     quantity: number,
     // tag the transaction, default provided
     memo?: string
@@ -45,14 +45,14 @@ export function buildTransferAction(
     fromAccount: string,
     // name of permission, example "test"
     usingPermission: string,
-    // name of a account, string with 12 chars
+    // name of an account, string with 12 chars
     toAccount: string,
     // example 0.25, we will add symbol name
     quantity: number,
     // tag the transaction, default provided
     memo?: string
 ): Action {
-    // build out quantity
+    // build out quantity 4 decimal places, "EOS" required
     const eosAmount = `${quantity.toFixed(4)} EOS`
     // Generate typed data for action data
     // make an interface for this?
